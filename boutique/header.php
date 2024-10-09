@@ -83,9 +83,3 @@
 				</div>
 			</div>
 		</header><!-- #masthead -->
-
-
-		<div id="content" class="site-content" tabindex="-1">
-			<div class="col-full">
-
-				<?php
