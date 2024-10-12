@@ -39,6 +39,11 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'full');
                         <a href="<?php echo $categorie_link['url']; ?>" target="<?php echo $categorie_link['target']; ?>"><?php echo $categorie_link['title']; ?></a>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section id="categories-cards" class="categories-cards">
+            <div class="container">
 
                 <div class="categories-wrapper">
                     <?php
@@ -71,14 +76,13 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'full');
                         Shop Cigars
                     </a>
                 </div>
-
             </div>
-        </section>
 
+        </section>
     <?php endif; ?>
 
 
-
+	<?php get_template_part('partials/list-filters'); ?>
 </main>
 
 <?php

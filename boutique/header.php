@@ -79,7 +79,7 @@
 				</div>
 
 				<div class="button-social-media">
-					<a href="#footer">SOCIAL MEDIA</a>
+					<a href="#footer-rrss">SOCIAL MEDIA</a>
 				</div>
 			</div>
 		</header><!-- #masthead -->

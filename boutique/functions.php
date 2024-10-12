@@ -62,3 +62,54 @@ function add_age_verification_script() {
 add_action('wp_enqueue_scripts', 'add_age_verification_script');
 
 
+if (function_exists('acf_add_options_page')) {
+    $opciones_charquican =  acf_add_options_page(
+        array(
+            'page_title' => 'Opciones del sitio',
+            'menu_title' => 'Opciones del sitio',
+            'menu_slug' => 'options_site',
+            'capability' => 'edit_posts',
+            'position' => false,
+            'parent_slug' => '',
+            'icon_url' => false,
+            'redirect' => true,
+            'post_id' => 'options',
+            'autoload' => false,
+            'icon_url' => 'dashicons-hammer',
+        )
+    );
+
+    acf_add_options_sub_page(array(
+        'menu_title'     => 'Opciones Generales',
+        'page_title'     => 'Opciones Generales',
+        'parent_slug'     => $opciones_charquican['menu_slug'],
+    ));
+
+}
+
+
+function filter_products_by_price($query) {
+    // Asegurarse de que estamos en la tienda o en la página de productos y no en la administración de WordPress
+    if (!is_admin() && $query->is_main_query() && is_shop()) {
+        // Verifica si se ha enviado un rango de precios
+        if (isset($_GET['min_price']) && isset($_GET['max_price'])) {
+            $min_price = sanitize_text_field($_GET['min_price']);
+            $max_price = sanitize_text_field($_GET['max_price']);
+
+            // Asegúrate de que los valores sean numéricos
+            if (is_numeric($min_price) && is_numeric($max_price)) {
+                // Ajustar la meta query para el filtro de precios
+                $meta_query = array(
+                    array(
+                        'key' => '_price',
+                        'value' => array($min_price, $max_price),
+                        'compare' => 'BETWEEN',
+                        'type' => 'NUMERIC'
+                    )
+                );
+                $query->set('meta_query', $meta_query);
+            }
+        }
+    }
+}
+add_action('pre_get_posts', 'filter_products_by_price');
