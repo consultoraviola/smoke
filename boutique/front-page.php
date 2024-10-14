@@ -8,10 +8,9 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'full');
 <main>
     <!-- Hero Section -->
     <section class="hero" style="background-image: url('<?php echo esc_url($featured_image); ?>');">
+        <!-- <span>SHOP CIGARS</span> -->
         <div class="scroll-icon">
-            <a href="#categories">
-                <img src="path-to-scroll-icon.png" alt="Scroll Down">
-            </a>
+            <a href="#categories"></a>
         </div>
     </section>
 
@@ -80,7 +79,6 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'full');
 
         </section>
     <?php endif; ?>
-
 
 	<?php get_template_part('partials/list-filters'); ?>
 </main>

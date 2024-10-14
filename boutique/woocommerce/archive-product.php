@@ -40,10 +40,10 @@ do_action('woocommerce_before_main_content');
 	?>
 </div>
 
-<div class="shop-container" style="display: flex; margin-top: 3rem">
+<div class="shop-container">
 
 	<!-- Productos (75%) -->
-	<div class="products-area" style="flex: 75%; padding: 0 3rem;">
+	<div class="products-area">
 		<?php
 		if (woocommerce_product_loop()) {
 
@@ -115,17 +115,28 @@ do_action('woocommerce_before_main_content');
 	</div>
 
 	<!-- Sidebar (25%) -->
-	<div class="sidebar-area" style="flex: 25%; padding-left: 20px;">
-		<?php if (is_active_sidebar('shop-sidebar')) : ?>
-			<div class="widget-area">
-				<?php dynamic_sidebar('shop-sidebar'); ?>
-			</div>
-		<?php else : ?>
-			<aside class="widget">
-				<h2 class="widget-title">Buscar Productos</h2>
-				<?php get_product_search_form(); ?>
-			</aside>
-		<?php endif; ?>
+	<div class="sidebar-area">
+		<!-- Sidebar with Filters -->
+		<!-- Price Filter -->
+		<div class="filter-price">
+			<?php the_widget('WC_Widget_Price_Filter'); ?>
+		</div>
+
+		<!-- Cart Items -->
+		<div class="cart-summary box-card-filter">
+			<?php the_widget('WC_Widget_Cart'); ?>
+		</div>
+
+		<!-- Average Rating Filter -->
+		<!-- <div class="average-rating box-card-filter">
+			<?php // the_widget('WC_Widget_Rating_Filter'); ?>
+		</div> -->
+
+		<!-- Product Search -->
+		<div class="product-search box-card-filter">
+			<span>Search by products</span>
+			<?php get_product_search_form(); ?>
+		</div>
 	</div>
 
 </div>

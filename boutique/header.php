@@ -32,19 +32,22 @@
 		<?php do_action('storefront_before_header'); ?>
 
 		<header id="masthead" class="site-header" role="banner" style="<?php storefront_header_styles(); ?>">
+			<!-- Logo -->
 			<div class="logo-header">
 				<a href="<?php echo home_url(); ?>">
-					<img src="<?php echo get_stylesheet_directory_uri() .  '/images/logo-header.png' ?>" alt="">
+					<img src="<?php echo get_stylesheet_directory_uri() .  '/images/logo-header.png' ?>" alt="Logo">
 				</a>
 			</div>
 
-			<div class="hamburger-menu">
+			<!-- Menú de hamburguesa -->
+			<div class="hamburger-menu" id="hamburger-menu">
 				<span></span>
 				<span></span>
 				<span></span>
 			</div>
 
-			<nav class="primary-navigation">
+			<!-- Menú de navegación en mobile -->
+			<nav class="primary-navigation" id="mobile-menu">
 				<?php
 				wp_nav_menu(array(
 					'theme_location' => 'primary_menu',
@@ -52,34 +55,81 @@
 					'menu_class'     => 'menu',
 				));
 				?>
+
+				<!-- Contenido adicional solo visible en móviles -->
+				<div class="is-flex only-mobile">
+					<div class="contact-info">
+						<a href="mailto:Orders@Shouldismokethis.com">orders@shouldismokethis.com</a>
+						<div class="phone">
+							<a href="tel:+19734774160">+1 (973) 477-4160</a>
+							<span>TEXT OR CALL</span>
+						</div>
+					</div>
+
+					<div class="is-flex margin-20 icons-buttons">
+						<div class="cart-logo">
+							<a href="<?php echo wc_get_cart_url(); ?>">
+								<img src="<?php echo get_stylesheet_directory_uri() . '/images/cart.png'; ?>" alt="Cart">
+								<span class="cart-count"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+							</a>
+						</div>
+
+						<div class="account-logo">
+							<a href="<?php echo get_permalink(get_option('woocommerce_myaccount_page_id')); ?>">
+								<img src="<?php echo get_stylesheet_directory_uri() . '/images/account.png'; ?>" alt="Account">
+							</a>
+						</div>
+					</div>
+<!-- 
+					<div class="button-social-media">
+						<a href="#footer-rrss">SOCIAL MEDIA</a>
+					</div> -->
+				</div>
 			</nav>
 
-			<div class="is-flex">
+			<!-- Contenido adicional solo visible en escritorio -->
+			<div class="is-flex only-desktop">
 				<div class="contact-info">
-					<a href="mailto:Orders@Shouldismokethis.com">Orders@Shouldismokethis.com</a>
+					<a href="mailto:Orders@Shouldismokethis.com">orders@shouldismokethis.com</a>
 					<div class="phone">
 						<a href="tel:+19734774160">+1 (973) 477-4160</a>
 						<span>TEXT OR CALL</span>
 					</div>
 				</div>
 
-				<div class="is-flex margin-20">
+				<div class="is-flex margin-20 X">
 					<div class="cart-logo">
 						<a href="<?php echo wc_get_cart_url(); ?>">
-							<img src="<?php echo get_stylesheet_directory_uri() . '/images/cart.png'; ?>" alt="">
+							<img src="<?php echo get_stylesheet_directory_uri() . '/images/cart.png'; ?>" alt="Cart">
 							<span class="cart-count"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
 						</a>
 					</div>
 
 					<div class="account-logo">
 						<a href="<?php echo get_permalink(get_option('woocommerce_myaccount_page_id')); ?>">
-							<img src="<?php echo get_stylesheet_directory_uri() . '/images/account.png'; ?>" alt="">
+							<img src="<?php echo get_stylesheet_directory_uri() . '/images/account.png'; ?>" alt="Account">
 						</a>
 					</div>
 				</div>
-
+<!-- 
 				<div class="button-social-media">
 					<a href="#footer-rrss">SOCIAL MEDIA</a>
-				</div>
+				</div> -->
 			</div>
-		</header><!-- #masthead -->
+		</header>
+
+		<!-- Script para el comportamiento del menú en móviles -->
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+				var hamburgerMenu = document.getElementById('hamburger-menu');
+				var mobileMenu = document.getElementById('mobile-menu');
+
+				hamburgerMenu.addEventListener('click', function() {
+					mobileMenu.classList.toggle('open');
+				});
+			});
+		</script>
+
+	<?php wp_footer(); ?>
+	</body>
+</html>
