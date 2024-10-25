@@ -29,13 +29,17 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'full');
 
                 <div class="row">
                     <div class="container-title">
-                        <span class="upper-title"><?php echo $categorie_uppertitle; ?></span>
+                        <?php if (!empty($categorie_uppertitle)): ?>
+                            <span class="upper-title"><?php echo $categorie_uppertitle; ?></span>
+                        <?php endif; ?>
                         <h2 class="title"><?php echo $categorie_title; ?></h2>
                     </div>
 
                     <div class="container-content">
                         <p><?php echo $categorie_contenido; ?></p>
-                        <a href="<?php echo $categorie_link['url']; ?>" target="<?php echo $categorie_link['target']; ?>"><?php echo $categorie_link['title']; ?></a>
+                        <?php if (!empty($categorie_link)): ?>
+                            <a href="<?php echo $categorie_link['url']; ?>" target="<?php echo $categorie_link['target']; ?>"><?php echo $categorie_link['title']; ?></a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -47,12 +51,22 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'full');
                 <div class="categories-wrapper">
                     <?php
                     // Obtener las categorías específicas por slug
+                    $desired_order = array('cigars', 'exclusivesamplers', 'recentlyadded');
+
                     $categories = get_terms(array(
                         'taxonomy' => 'product_cat',
                         'hide_empty' => true,
-                        'slug' => array('exclusivesamplers', 'cigars', 'recentlyadded'),
+                        'slug' => $desired_order,
                     ));
 
+                    // Reorganizar las categorías en el orden de $desired_order
+                    usort($categories, function ($a, $b) use ($desired_order) {
+                        $pos_a = array_search($a->slug, $desired_order);
+                        $pos_b = array_search($b->slug, $desired_order);
+                        return $pos_a - $pos_b;
+                    });
+
+                    // Mostrar las categorías en el orden correcto
                     foreach ($categories as $category) {
                         $thumbnail_id = get_term_meta($category->term_id, 'thumbnail_id', true);
                         $image_url = wp_get_attachment_url($thumbnail_id);
@@ -70,9 +84,10 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'full');
                     ?>
                 </div>
 
+
                 <div class="shop-button-container">
                     <a href="<?php echo esc_url(wc_get_page_permalink('shop')); ?>" class="shop-button">
-                        Shop Cigars
+                        Shop All Cigars
                     </a>
                 </div>
             </div>
@@ -80,7 +95,11 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'full');
         </section>
     <?php endif; ?>
 
-	<?php get_template_part('partials/list-filters'); ?>
+    <?php
+
+    // get_template_part('partials/best-sellers',  ['horizonte' => $best_seller] ); 
+    get_template_part('partials/best-sellers');
+    ?>
 </main>
 
 <?php

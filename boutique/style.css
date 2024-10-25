@@ -432,6 +432,11 @@ table.cart td.actions {
     padding: 2.618em 5.874em;
   }
 
+  .current-menu-item a{
+    color: #D48F56 !important;
+    font-weight: 500;
+  }
+
   .main-navigation ul.menu li.current-menu-item>a {
     position: relative;
   }
@@ -797,13 +802,13 @@ table.cart td.actions {
   list-style: none;
   margin: 0;
   height: 100%;
-  align-items: center;
+  align-items: start;
   margin: 0 50px;
 
   @media screen and (max-width: 800px) {
     justify-content: center;
     flex-direction: column;
-    margin-bottom: 3rem;
+    margin: 10px 0 30px 10px !important;
   }
 }
 
@@ -1423,7 +1428,11 @@ table.cart td.actions {
 
 .menu-item {
   font-family: system-ui;
-  font-weight: 600;
+  /* font-weight: 600; */
+}
+
+.menu-item a {
+  font-size: 18px;
 }
 
 .social-icons a {
@@ -2381,6 +2390,95 @@ ul.products li.product .price::after {
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 } */
 
+
+/* BEST SELLER */
+.best-seller {
+  background-color: white;
+  padding: 3rem 0 6rem;
+  position: relative;
+}
+
+.best-seller li {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #c3a48a1f;
+}
+
+.best-seller .product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.best-seller .product-card .woocommerce-loop-product__title {
+  margin-bottom: 10px;
+  margin-top: 6px;
+}
+
+.best-seller .product-card .amount {
+  position: relative;
+  background: transparent;
+  color: black;
+  font-family: system-ui;
+  font-size: 18px;
+  font-weight: 700;
+  box-shadow: none;
+  padding-top: 4px;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.best-seller .title-icon {
+  margin-bottom: 3rem;
+  font-size: 42px;
+}
+
+.best-seller .title-icon::before {
+  scale: .65;
+  top: -7px;
+  left: -30px;
+}
+
+.controles .swiper-button-prev {
+  left: 32px;
+  background: #000000b8;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.controles .swiper-button-prev:hover,
+.controles .swiper-button-next:hover {
+  background: #000000;
+}
+
+.controles .swiper-button-next {
+  right: 32px;
+  background: #000000b8;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.controles .swiper-button-prev::after {
+  color: white !important;
+  font-size: 26px !important;
+  font-weight: bold !important;
+  position: relative !important;
+  left: -2px !important;
+}
+
+.controles .swiper-button-next::after {
+  color: white !important;
+  font-size: 26px !important;
+  font-weight: bold !important;
+  position: relative !important;
+  left: 2px !important;
+}
+
 #mobile-menu.open {
   display: block;
 }
@@ -2433,4 +2531,93 @@ ul.products li.product .price::after {
     gap: 10px;
     margin-bottom: 2rem;
   }
+}
+
+/* Ocultar los botones de subir y bajar en los inputs de tipo number en Chrome, Safari, Edge y Opera */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+.alphabet .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.alphabet .container::after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: #000000;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.alphabet .container a {
+  margin-right: 34px;
+  font-weight: bolder;
+  color: black;
+  font-family: system-ui;
+  font-size: 38px;
+  position: relative;
+}
+
+
+.alphabet .container a:focus {
+  outline: none;
+}
+
+
+.alphabet .container a:hover {
+  color: #D48F56;
+}
+
+.alphabet .container a::after {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: black;
+  position: absolute;
+  right: -20px;
+  top: 50%;
+}
+
+.entry-content.alphabet p a {
+  color: #D48F56;
+  font-weight: 600;
+  font-family: system-ui;
+  font-size: 20px;
+  text-decoration: none !important;
+  margin-bottom: -10px;
+}
+
+.entry-content.alphabet p:first-child {
+  text-align: center;
+}
+
+.entry-content.alphabet p a:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+.entry-content.alphabet p span {
+  text-decoration: none !important;
+}
+
+.entry-content.alphabet p span mark {
+  background: transparent !important;
+  font-size: 24px;
+  font-weight: bolder;
+  color: black !important;
+
 }

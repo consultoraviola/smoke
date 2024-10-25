@@ -15,11 +15,14 @@ if (!$logo) {
         <p class="warning">MUST BE 21 YEARS OR OLDER TO VIEW THIS PAGE.</p>
         <form id="age-verification-form">
             <div class="campos">
-                <input type="text" placeholder="MM" id="month" min="1" max="12" required><br><br>
+                <!-- Mes -->
+                <input type="number" placeholder="MM" id="month" min="1" max="12" maxlength="2" required><br><br>
                 
-                <input type="text" placeholder="DD" id="day" min="1" max="31" required><br><br>
+                <!-- Día -->
+                <input type="number" placeholder="DD" id="day" min="1" max="31" maxlength="2" required><br><br>
                 
-                <input type="text" placeholder="YYYY" id="year" min="1900" max="<?php echo date('Y'); ?>" required><br><br>
+                <!-- Año -->
+                <input type="number" placeholder="YYYY" id="year" min="1900" max="<?php echo date('Y'); ?>" maxlength="4" required><br><br>
             </div>
 
             <button type="submit" id="submit-age" disabled>ENTER</button>
