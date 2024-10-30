@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('age-verification-form');
     const submitBtn = document.getElementById('submit-age');
-    
+
     const dayInput = document.getElementById('day');
     const monthInput = document.getElementById('month');
     const yearInput = document.getElementById('year');
@@ -15,19 +15,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Validar el campo de día
-    dayInput.addEventListener('input', function() {
+    dayInput.addEventListener('input', function () {
         validateNumericInput(dayInput, 2);
         validateAge(); // Validar la edad después de cada cambio
     });
 
     // Validar el campo de mes
-    monthInput.addEventListener('input', function() {
+    monthInput.addEventListener('input', function () {
         validateNumericInput(monthInput, 2);
         validateAge(); // Validar la edad después de cada cambio
     });
 
     // Validar el campo de año
-    yearInput.addEventListener('input', function() {
+    yearInput.addEventListener('input', function () {
         validateNumericInput(yearInput, 4);
         validateAge(); // Validar la edad después de cada cambio
     });
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const day = parseInt(dayInput.value);
         const month = parseInt(monthInput.value);
         const year = parseInt(yearInput.value);
-        
+
         // Verificar si los valores ingresados son válidos
         if (isNaN(day) || isNaN(month) || isNaN(year) || year.toString().length < 4) {
             submitBtn.disabled = true;
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Evento de envío del formulario
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', function (event) {
         event.preventDefault();
 
         const day = parseInt(dayInput.value);
@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (age >= 21) {
             // Guardar en localStorage para que no pregunte otra vez
             localStorage.setItem('ageVerified', 'true');
+            document.getElementById('age-verification').style.visibility = 'hidden';
             document.getElementById('age-verification').style.display = 'none';
         } else {
             alert('Debes tener al menos 21 años para entrar.');
@@ -100,6 +101,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Verificar si ya ha sido verificada la edad
     if (localStorage.getItem('ageVerified') === 'true') {
+        document.getElementById('age-verification').style.visibility = 'hidden';
         document.getElementById('age-verification').style.display = 'none';
+
     }
 });
